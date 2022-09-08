@@ -15,12 +15,18 @@ public class Main {
         int m = Integer.parseInt(st.nextToken());
 
         int[][] map = new int[n][n];
-        int[][] dy = new int[n+1][n+1];
+        int[][] dy = new int[n][n];
 
-        for(int i=1;i<=n;i++){
+        for(int i=0;i<n;i++){
             st = new StringTokenizer(br.readLine());
-            for (int j=1;j<=n;j++){
-               dy[i][j] = dy[i][j-1]+Integer.parseInt(st.nextToken());
+            for (int j=0;j<n;j++){
+                map[i][j] = Integer.parseInt(st.nextToken());
+                if(j==0){
+                    dy[i][j] = map[i][j];
+                }
+                else {
+                    dy[i][j] = map[i][j]+dy[i][j-1];
+                }
             }
         }
 
@@ -39,11 +45,15 @@ public class Main {
             int y2 = Integer.parseInt(st.nextToken());
 
             int sum =0;
-            for (int i=x1;i<=x2;i++){
-                sum += (dy[i][y2]-dy[i][y1-1]);
+            for (int i=x1-1;i<=x2-1;i++){
+                sum += dy[i][y2-1];
+//                System.out.print("sum+ = " + sum);
+                if(y1 ==1 ) continue;
+                sum -= dy[i][y1-2];
+//                System.out.println(" sum - = "+sum);
             }
 
-            sb.append(sum).append('\n');
+           sb.append(sum).append('\n');
         }
         System.out.println(sb);
     }
