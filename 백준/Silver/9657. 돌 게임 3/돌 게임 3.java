@@ -9,21 +9,14 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = null;
 
-        int n = Integer.parseInt(br.readLine());
+        long n = Long.parseLong(br.readLine());
 
-        String[] dy = new String[1001];
-
-        for (int i=1;i<=1000;i++) {
-            if(i%7 ==0 || i%7 == 2) {
-                dy[i] = "CY";
-            }
-            else dy[i] = "SK";
-
+        if(n%7 ==0 || n%7==2) {
+            System.out.println("CY");
         }
-
-        System.out.println(dy[n]);
-
-
+        else{
+            System.out.println("SK");
+        }
     }
 
 }
